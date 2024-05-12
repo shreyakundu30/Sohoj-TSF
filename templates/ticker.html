@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Price Prediction</title>
+    <style>
+        body {
+      font-family: 'Times New Roman', Times, serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      background-image: url('https://1.bp.blogspot.com/-UbiRcg-09Pk/WAuCdY-BOPI/AAAAAAAALpc/ADdx6NCQJ5cljOiUradxaQi65Cl-kCh4ACLcB/s1600/Neon%2BBackgrounds%2B16.jpg');
+            background-size:cover;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 150px auto;
+      margin-top: 55px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      /* Grey with transparency */
+      border-radius: 50px 5px;
+      backdrop-filter: blur(50px);
+      position: relative;
+      box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+
+      &::before {
+        content: "";
+        position: absolute;
+        border-radius: 50px 5px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 5px solid rgb(9, 249, 225);
+        transition: all .5s;
+        animation: clippath 3s infinite linear;
+      }
+    }
+
+    @keyframes clippath {
+
+      0%,
+      100% {
+        clip-path: inset(0 0 95% 0);
+      }
+
+      25% {
+        clip-path: inset(0 95% 0 0);
+      }
+
+      50% {
+        clip-path: inset(95% 0 0 0);
+      }
+
+      75% {
+        clip-path: inset(0 0 0 95%);
+      }
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-family: "Book Antique";
+      text-align: center;
+      font-size: 40px;
+      color: transparent;
+      background-image: url('https://cdn.dribbble.com/users/390128/screenshots/1862177/sgd.gif');
+      background-position: center;
+      -webkit-background-clip: text;
+    }
+    form {
+      flex-direction: column;
+      color: #f0f0f0;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    label {
+      margin-bottom: 10px;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+    }
+        input[type="text"],
+        select {
+            width: calc(100% - 22px);
+            margin-bottom: 20px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            appearance: none; /* Hide default dropdown arrow */
+            -webkit-appearance: none; /* Hide default dropdown arrow for Safari */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="%23333" d="M7 10l5 5 5-5H7z"/></svg>'); /* Custom arrow icon */
+            background-repeat: no-repeat;
+            background-position: right 10px top 50%;
+            background-size: 12px;
+            cursor: pointer;
+        }
+        select {
+            background-color: #f9f9f9;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            margin-top: 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        p.error {
+            color: red;
+            margin-top: 20px;
+        }
+        .button-86 {
+      all: unset;
+      width: 100px;
+      height: 30px;
+      font-size: 16px;
+      background: transparent;
+      border: none;
+      position: relative;
+      color: #f0f0f0;
+      cursor: pointer;
+      z-index: 1;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+
+    .button-86::after,
+    .button-86::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      z-index: -99999;
+      transition: all .4s;
+    }
+
+    .button-86::before {
+      transform: translate(0%, 0%);
+      width: 100%;
+      height: 100%;
+      background: #28282d;
+      border-radius: 10px;
+    }
+
+    .button-86::after {
+      transform: translate(10px, 10px);
+      width: 35px;
+      height: 35px;
+      background: #ffffff15;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border-radius: 50px;
+    }
+
+    .button-86:hover::before {
+      transform: translate(5%, 20%);
+      width: 110%;
+      height: 110%;
+    }
+
+    .button-86:hover::after {
+      border-radius: 10px;
+      transform: translate(0, 0);
+      width: 100%;
+      height: 100%;
+    }
+
+    .button-86:active::after {
+      transition: 0s;
+      transform: translate(0, 5%);
+    }
+    .btn2 {
+  position: relative;
+  display: inline-block;
+  padding: 15px 30px;
+  border: 2px solid #fefefe;
+  text-transform: uppercase;
+  color: #fefefe;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  font-family: 'Times New Roman', Times, serif;
+  transition: 0.3s;
+        background-color: transparent;
+ 
+}
+
+
+.btn2::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% - -2px);
+  background-color: black;
+  transition: 0.3s ease-out;
+  transform: scaleY(1);
+
+}
+
+.btn2::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% - 50px);
+  background-color: transparent;
+  transition: 0.3s ease-out;
+  transform: scaleY(1);
+}
+
+.btn2:hover::before {
+  transform: translateY(-25px);
+  height: 0;
+}
+
+.btn2:hover::after {
+  transform: scaleX(0);
+  transition-delay: 0.15s;
+}
+
+.btn2:hover {
+  border: 2px solid #fefefe;
+}
+
+.btn2 span {
+  position: relative;
+  z-index: 3;
+}
+
+button {
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+}
+    </style>
+</head>
+<body>
+    <header style="display: flex; justify-content: flex-end; padding: 5px;">
+        <button>
+            <a href="/" class="btn2"><span class="spn2">Back to Home</span></a>
+        </button>
+        <button>
+            <a href="/csv" class="btn2"><span class="spn2">Insert CSV File</span></a>
+        </button>
+    </header> 
+    <div class="container">
+        <h1>Ticker-Based Data Prediction</h1>
+        <form method="post" action="/ticker">
+            <label for="company">Enter Company Name</label><br>
+            <input type="text" id="company" name="company" required><br>
+            <label for="period">Select Forecast Horizon</label><br>
+            <select id="period" name="period">
+              <option value="Forecast">---- Select Forecast Horizon Unit ----</option>
+                <option value="years">Years</option>
+                <option value="months">Months</option>
+                <option value="days">Days</option>
+            </select><br>
+            <button class="button-86" type="submit" style="font-weight: bold;">Predict</button>
+        </form>
+        {% if graph_data %}
+            <img src="{{ graph_data }}" alt="Stock Price Prediction Graph">
+        {% endif %}
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

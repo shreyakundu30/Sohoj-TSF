@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .hero {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 30vh;
+            /* Adjusted height */
+        }
+
+        nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        nav .logo1 {
+            width: 150px;
+            height: auto;
+            mix-blend-mode: lighten;
+        }
+
+        nav ul li {
+            display: inline-block;
+            list-style: none;
+            margin: 5px 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: large;
+            letter-spacing: 0.1em;
+        }
+
+        a:hover {
+            color: #ea00ff;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: -223px;
+            /* Adjusted negative margin */
+            margin-bottom: 0;
+            /* Add this line to remove the white gap */
+            background-repeat: no-repeat;
+            background-position: 0cap;
+            background-image: url('https://wallup.net/wp-content/uploads/2017/03/27/427778-minimalism-triangle-black-abstract.jpg');
+
+        }
+
+
+        .card6 {
+            width: 300px;
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            background: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+            overflow: hidden;
+            /* Hide content overflow */
+        }
+
+        .card6 img {
+            width: 100px;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .card6 h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: aqua;
+        }
+
+        .card-content {
+            max-height: 150px;
+            overflow-y: auto;
+            color: seashell;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .cal-container {
+            display: flex;
+            justify-content: space-around;
+            padding: 50px;
+            background-color: black;
+            mix-blend-mode: lighten;
+            background-size: cover;
+            backdrop-filter: blur(10px);
+            height: 50vh;
+            margin-top: -180px;
+        }
+
+        .calleft-container,
+        .calright-container {
+            display: flex;
+            background: rgba(231, 229, 229, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 48%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .calleft-container img,
+        .calright-container img {
+            max-width: 50%;
+            height: auto;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .cal-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cal-content h2 {
+            color: #3498db;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .cal-content p {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero">
+        <nav><img src="{{ url_for('static', filename='images/logo1.jpeg') }}" class="logo1">
+
+            <ul>
+                <li><a href="/csv">Go Back</a></li>
+                <li><a href="/">Back to Home</a></li>
+                <li><a href="/comma">Enter Manual Data</a></li>
+
+                
+            </ul>
+        </nav>
+    </div>
+
+    <div class="container">
+        <!-- Mean Card -->
+        <div class="card6">
+            <img
+                src="https://www.simcorp.com/-/media/images/5-insights-section/resources/2022/digital-client-communications-project/icongraphics_anim_data_lgrey.gif">
+            <h2 style="font-family: 'Times New Roman', Times, serif;">Mean</h2>
+            <div class="card-content" style="font-weight: bold;font-size: 18px;">{{ mean }}</div>
+        </div>
+
+        <!-- Median Card -->
+        <div class="card6">
+            <img src="https://theme.zdassets.com/theme_assets/11634079/9e70261f957ab56c0029b3e57c25c54da97aef8a.gif">
+            <h2 style="font-family: 'Times New Roman', Times, serif;">Median</h2>
+            <div class="card-content" style="font-weight: bold;font-size: 18px;">{{ median }}</div>
+        </div>
+
+        <!-- Mode Card -->
+        <div class="card6">
+            <img
+                src="https://www.simcorp.com/-/media/images/5-insights-section/resources/2022/digital-client-communications-project/icongraphics_anim_demand.gif">
+            <h2 style="font-family: 'Times New Roman', Times, serif;font-size: 18px;">Mode</h2>
+            <div class="card-content" style="font-weight: bold;
+            ">{{ mode }}</div>
+        </div>
+
+        <!-- Standard Deviation Card -->
+        <div class="card6">
+            <img
+                src="https://www.simcorp.com/-/media/images/5-insights-section/resources/2022/digital-client-communications-project/icongraphics_anim_delivero.gif">
+            <h2 style="font-family: 'Times New Roman', Times, serif;">Standard Deviation</h2>
+            <div class="card-content" style="font-weight: bold;font-size: 18px;">{{ stdev }}</div>
+        </div>
+
+
+    </div>
+    <div class="cal-container">
+        <div class="calright-container">
+            <img src="https://cdn.dribbble.com/users/5094323/screenshots/11184058/media/21d762e9bf83e02db2e7c2fab41320e1.gif"
+                alt="Left Container Image">
+            <div class="calleft-content">
+                <br>
+                <h2
+                    style="text-align: center; font-family: 'Times New Roman', Times, serif; font-size: 25px;color: black; font-family: 'Times New Roman', Times, serif; animation: glowZoom 3s infinite;">
+                    Overview of Data Trends</h2><br />
+                <style>
+                    @keyframes glowZoom {
+                        0% {
+                            color: rgb(8, 153, 220);
+                            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8);
+                            transform: scale(1);
+                        }
+
+                        50% {
+                            color: rgb(4, 107, 101);
+                            /* Change to your preferred glow color */
+                            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.8);
+                            transform: scale(1.1);
+                        }
+
+                        100% {
+                            color: rgb(100, 3, 78);
+                            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8);
+                            transform: scale(1);
+                        }
+                    }
+                </style>
+                <p style="text-align: center; font-family:'Times New Roman', Times, serif, serif;">
+                    <b>Explore the Graph</b><br>Click here to delve into the visual representation of our data trends
+                    and gain valuable insights 👇
+                </p><br>
+                <form action="/show_graph" method="get">
+                    <input type="hidden" name="file_path" value="{{ file_path }}">
+                    <input type="hidden" name="train_percentage" value="{{ train_percentage }}">
+                    <input type="hidden" name="test_percentage" value="{{ test_percentage }}">
+                    <center><button
+                            style="background: linear-gradient(45deg,#00ccff,#0e1538,#d400d4); color: white; font-family: 'Times New Roman', Times, serif;"
+                            class="btn" type="submit">Show Graph</button></center>
+                </form>
+
+
+                <br>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

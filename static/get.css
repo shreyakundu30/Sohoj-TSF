@@ -1,0 +1,302 @@
+/* @import url('http://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap'); */
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    background-image: url('/static/images/back.jpg'); /* Replace 'your-image-url.jpg' with the URL of your image */
+    background-size: cover;
+    backdrop-filter: blur(30px)
+    /* You can also add other background properties like background-position, background-repeat, etc. if needed */
+}
+
+.container
+{
+    position: relative;
+    min-width: 1100px;
+    min-height: 550px;
+    display: flex;
+    z-index: 1000;
+    /* border-radius: 22px; */
+    /* background-color: #fff; */
+
+}
+
+.container .contactInfo
+{
+    position: absolute;
+    top: 40px;
+    width: 350px;
+    height: calc(100% - 80px);
+    background-image: url('https://img.freepik.com/premium-photo/ascending-graphics-statistics-black-background-3d-generative-ai_853928-153.jpg');
+    background-position: center;
+    background-size: cover;
+    z-index: 1;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0px 20px 30px -10px rgb(38, 57, 77), 0 0 40px rgb(71, 121, 237); /* Neon blue box shadow */
+    border-radius: 22px;
+}
+
+.container .contactInfo::before
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha (last) value for the desired level of transparency */
+    z-index: -1; /* Place the overlay behind the content */
+    border-radius: 22px; /* Adjust if you want rounded corners */
+}
+
+.container .contactInfo h2
+{
+    color: #fff;
+    font-size:24px;
+    font-weight: 700;
+    font-family: cursive;
+}
+
+.container .contactInfo ul.info 
+{
+   position: relative;
+   margin: 20px 0; 
+}
+
+.container .contactInfo ul.info li
+{
+   position: relative;
+   list-style: none;
+   display: flex;
+   margin: 20px 0;
+   cursor: pointer;
+   align-items: flex-start;
+}
+
+.container .contactInfo ul.info li span:nth-child(1)
+{
+    width: 30px;
+    min-width: 30px;
+}
+
+/* for gmail */
+.container .contactInfo ul.info li span a
+{
+    color: #fff;
+    text-decoration: none;
+    width: 30px;
+    min-width: 30px;
+    
+}
+
+.container .contactInfo ul.info li span:nth-child(1) img
+{
+    max-width: 100%;
+    filter: invert(1);
+}
+
+.container .contactInfo ul.info li span:nth-child(2)
+{
+    color: #fff;
+    margin-left: 10px;
+    font-weight: 300;
+}
+
+.container .contactInfo ul.sci
+{
+    position: relative;
+    display: flex;
+}
+
+.container .contactInfo ul.sci li
+{
+   list-style: none;  
+   margin-right: 15px;
+}
+
+.container .contactInfo ul.sci li a
+{
+   text-decoration: none;
+}
+
+.container .contactInfo ul.sci li a img
+{
+   filter: invert(1);
+}
+
+.container .contactForm {
+    position: absolute;
+    padding: 70px 50px;
+    padding-left: 250px;
+    margin-left: 150px;
+    width: calc(100% - 150px);
+    height: 100%;
+    background:rgba(195, 195, 195, 0.187); /* Adjust the alpha for transparency */
+    box-shadow: 0 0 20px rgba(173, 216, 230, 0.7), inset 0 0 30px rgba(255, 255, 255, 0.3); /* Glass-like effect */
+    border-radius: 22px;
+    transition: box-shadow 0.5s ease; /* Add a smooth transition effect */
+}
+
+.container .contactForm input,
+.container .contactForm textarea {
+    background: rgba(0, 0, 0, 0);/* Adjust the alpha for input box transparency */
+    border:  rgba(0, 0, 0, 0.441);
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    width: 100%;
+}
+
+.container .contactForm input::placeholder,
+.container .contactForm textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7); /* Adjust the alpha for placeholder transparency */
+}
+
+/* Keyframes for glowing effect */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 20px rgba(173, 216, 230, 0.7), inset 0 0 30px rgba(255, 255, 255, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(173, 216, 230, 0.7), inset 0 0 50px rgba(255, 255, 255, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(173, 216, 230, 0.7), inset 0 0 30px rgba(255, 255, 255, 0.3);
+    }
+}
+
+/* Apply the keyframes to the glowing effect */
+.container .contactForm {
+    animation: glow 1.5s infinite; /* Repeat the animation infinitely */
+}
+
+
+.container .contactForm h2
+{
+    color: white;
+    font-size: 29px;
+    font-weight: 800;
+    font-family: cursive;
+    animation: floatAnimation 4s infinite alternate;
+}
+
+@keyframes floatAnimation {
+    0% {
+        transform: translateX(0);
+        color: white;
+    }
+    25%{
+        transform: translateX(-15px);
+        color: crimson;
+        letter-spacing: 2px;
+    }
+    50% {
+        transform: translateX(-30px);
+        color: yellowgreen;
+        letter-spacing: 3px;
+    }
+    75%{
+        transform: translateX(-15px);
+        color:burlywood;
+        letter-spacing: 2px;
+    }
+    100% {
+        transform: translateX(0);
+        color: white;
+    }
+}
+
+.container .contactForm .formBox
+{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-top: 30px;
+    border: none;
+}
+
+.container .contactForm .formBox .inputBox
+{
+    position: relative;
+    margin-bottom: 35px;
+}
+
+.container .contactForm .formBox .inputBox.w50
+{
+    width: 47%;
+}
+
+.container .contactForm .formBox .inputBox.w100
+{
+    width: 100%;
+}
+
+
+.container .contactForm .formBox .inputBox textarea 
+{
+    height: 120px;
+}
+
+.container .contactForm .formBox .inputBox span 
+{
+    position: absolute;
+    left: 0;
+    padding: 5px 0;
+    pointer-events: none;
+    font-size: 21px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+
+.container .contactForm .formBox .inputBox input:focus ~ span,
+.container .contactForm .formBox .inputBox input:valid ~ span,
+.container .contactForm .formBox .inputBox textarea:focus ~ span, 
+.container .contactForm .formBox .inputBox textarea:valid ~ span
+{
+    transform: translateY(-26px);
+    font-size:  12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: white;
+    font-weight: 700;
+} 
+
+
+/* Css for the submit button */
+.container .contactForm .formBox .inputBox input[type="submit"]         
+{
+    position: relative;
+    cursor: pointer;
+    background: rgba(36, 45, 76, 0.95);
+    border-radius: 20px 0 20px 0;
+    color: #fff;
+    border: 2px solid  rgba(52, 67, 122, 0.95);
+    max-width: 150px;
+    padding: 12px;
+    transition: all 0.6s ease;
+}
+
+.container .contactForm .formBox .inputBox input[type="submit"]:hover{
+    background: rgba(173, 216, 230, 0.1);
+    border: 2px solid white;
+}

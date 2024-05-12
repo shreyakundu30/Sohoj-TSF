@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>সহজ-TSF</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- Include the new-section.css file -->
+    <link rel="stylesheet" href="/static/calculate.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .calmiddle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .centered-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            border: 2px solid #333;
+            background-image: url('https://e0.pxfuel.com/wallpapers/864/52/desktop-wallpaper-black-screen-beautiful-plain-blue-screen-tag-this-month-left-of-the-hudson.jpg');
+            background-size: cover;
+            padding: 65px;
+            margin-top: -300px;
+        }
+
+        .left-content {
+            width: 40%;
+        }
+
+        .left-content img {
+            max-width: 150%;
+            height: auto;
+        }
+
+        .right-content {
+            width: 50%;
+            padding-left: 20px;
+        }
+
+        .popup-btn {
+            background: transparent;
+            padding-left: 100px;
+            padding-top: 20px;
+            color: #021946;
+        }
+
+        .popup-btn:hover {
+            background: transparent;
+        }
+
+        /* Add this new style at the end of the file */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            z-index: 1000;
+        }
+
+        .popup.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 500px;
+            padding: 40px;
+            background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20200710/pngtree-soft-cool-and-warm-contrast-gradient-background-image_351658.jpg');
+            background-size: cover;
+            box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+        }
+
+        .popup-content h2 {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .close-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .close-btn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <div class="hero" style="margin-bottom: 0;"> <!-- Add margin-bottom: 0; here -->
+        <nav>
+            <img src="/static/images/sohoj.jpg" class="logo1">
+            <ul style="padding-bottom: 60px;">
+                <li><a href="#">Home</a></li>
+                <li><a href="#culate">Forecasting Insights</a></li>
+                <li><a href="#service">Services</a></li>
+            </ul>
+        </nav>
+        <h1 class="title" style="font-family: 'Times New Roman', Times, serif;font-weight: bold;">Forecast</h1>
+        <br><br><br>
+        <center>
+            <h4 style="color:#fff">
+                Your Navigator for Tomorrow's Insights
+                <br><br>
+                Dive into CSV or seizure data, adjust training/testing percentages, and watch as our automated models
+                illuminate the path to insightful predictions, shaping your future.
+            </h4>
+        </center>
+    </div>
+    <!-- New section with two side-by-side containers -->
+    <div class="cal-header" id="culate">
+        <b>
+            <h1 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+                Your Pathway to Precise Forecasts</h1>
+        </b>
+    </div>
+    <div class="cal-container">
+        <div class="calleft-container">
+            <img src="https://cdn.pixabay.com/animation/2023/06/13/15/13/15-13-13-522_512.gif"
+                alt="Left Container Image">
+            <div class="calleft-content">
+                <h2
+                    style="text-align: center; font-family: 'Lucida Calligraphy'; font-size: 25px;color: rgb(120, 59, 2);">
+                    Model Comparison Tool</h2><br />
+                <p style="text-align: center; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+                    Upload your CSV file and specify training/testing percentages to compare forecasting models.<b
+                        style="font-family: 'Times New Roman', Times, serif;"></b> Gain insights into the performance of
+                    <b style="font-family: 'Times New Roman', Times, serif;">Auto ARIMA,Auto ETS, SES, DES ,TES, & Naive</b> models with plotted graphs displaying testing data, training data, RMSE, and MAPE
+                    values
+                    👇</p>
+                <button onclick="location.href='/ind'" type="button" id="testbutton"
+                    style="width: 150px; height: 50px; border-radius: 180px; position: relative; left: calc(40% - 75px); top: calc(50% - 100px); background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82); cursor: pointer; line-height: 12px;">
+                    CLICK ME!
+                    <span
+                        style="content: ''; z-index: 1; position: absolute; display: block; width: 80%; height: 70%; top: 15%; left: 10%; transition: 0.3s opacity ease-in-out; filter: blur(15px); opacity: 0; background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);"></span>
+                </button>
+                <button onclick="togglePopup('popup1')" class="popup-btn"><i class="fa fa-info-circle"
+                        style="font-size: 30px; margin-top: -20px;margin-right: -22px;"></i></button>
+
+                <style>
+                    #testbutton:hover:before {
+                        opacity: 1;
+                        transition: 0.3s opacity ease-in-out;
+                        filter: blur(25px);
+                        background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+                    }
+
+                    #testbutton:after {
+                        content: 'CLICK ME!';
+                        text-align: center;
+                        line-height: 40px;
+                        font-size: 18px;
+                        color: rgba(235, 235, 235, 1);
+                        font-weight: bold;
+                        z-index: 5;
+                        position: absolute;
+                        display: block;
+                        border-radius: 180px;
+                        width: 92%;
+                        height: 80%;
+                        top: 10%;
+                        left: 4%;
+                        background-color: rgb(19, 20, 22);
+                    }
+
+
+                    .cal-header {
+                        margin-top: 40px;
+                        padding: 50px;
+                        position: relative;
+                        /* Change this to relative */
+                        width: 100%;
+                        font-size: 30px;
+                        -webkit-text-stroke: 2px rgb(9, 3, 0);
+                        color: transparent;
+                        background-repeat: no-repeat;
+                        -webkit-background-clip: text;
+                        background-position: -1300px 0;
+                        animation: backcolor 5s linear infinite alternate;
+                        letter-spacing: 0.1em;
+                        box-sizing: border-box;
+                        /* Add this line to include padding in the width */
+                    }
+                </style>
+            </div>
+        </div>
+
+        <div class="calright-container">
+            <img src="https://media1.giphy.com/media/QpyF0jsO26GWKTWctv/200w.gif?cid=6c09b952any105lpk0e8zsfs3ocpbipj9m5xszw5nhrlbf6r&ep=v1_gifs_search&rid=200w.gif&ct=s"
+                alt="Left Container Image">
+            <div class="calleft-content">
+                <h2
+                    style="text-align: center; font-family: 'Lucida Calligraphy'; font-size: 23px;color: rgb(120, 59, 2);">
+                    Upload, Predict & Visualize</h2><br />
+                <p style="text-align: center; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+                    Upload your CSV file, specify the forecast horizon, choose from a range of powerful forecasting
+                    models. <br>Our intuitive tool lets you effortlessly generate insightful graphs displaying both
+                    historical and forecasted data 👇</p><br>
+                <button onclick="location.href='/csv'" type="button" id="testbutton"
+                    style="width: 150px; height: 50px; border-radius: 180px; position: relative; left: calc(40% - 75px); top: calc(50% - 100px); background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82); cursor: pointer; line-height: 12px;">
+                    CLICK ME!
+                    <span
+                        style="content: ''; z-index: 1; position: absolute; display: block; width: 80%; height: 70%; top: 15%; left: 10%; transition: 0.3s opacity ease-in-out; filter: blur(15px); opacity: 0; background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);"></span>
+                </button>
+                <!-- Add the popup instruction button here -->
+                <button onclick="togglePopup('popup2')" class="popup-btn"><i class="fa fa-info-circle"
+                        style="font-size: 30px; margin-top: -20px;margin-right: -22px;"></i></button>
+
+                <style>
+                    .cal-header {
+                        margin-top: -50px;
+                        padding: 50px;
+                        position: relative;
+                        /* Change this to relative */
+                        width: 100%;
+                        font-size: 30px;
+                        -webkit-text-stroke: 2px rgb(9, 3, 0);
+                        color: transparent;
+                        background-repeat: no-repeat;
+                        -webkit-background-clip: text;
+                        background-position: -1300px 0;
+                        animation: backcolor 5s linear infinite alternate;
+                        letter-spacing: 0.1em;
+                        box-sizing: border-box;
+                        /* Add this line to include padding in the width */
+                    }
+
+                    /* Rest of your styles... */
+
+                    #testbutton:hover:before {
+                        opacity: 1;
+                        transition: 0.3s opacity ease-in-out;
+                        filter: blur(25px);
+                        background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+                    }
+
+                    #testbutton:after {
+                        content: 'CLICK ME!';
+                        text-align: center;
+                        line-height: 40px;
+                        font-size: 18px;
+                        color: rgba(235, 235, 235, 1);
+                        font-weight: bold;
+                        z-index: 5;
+                        position: absolute;
+                        display: block;
+                        border-radius: 180px;
+                        width: 92%;
+                        height: 80%;
+                        top: 10%;
+                        left: 4%;
+                        background-color: rgb(19, 20, 22);
+                    }
+                </style>
+            </div>
+        </div>
+    </div><br><br>
+
+    <section class="our services" id="service" style="margin-top: 20px;">
+        <b>
+            <h1 style="color: black; font-family: 'Times New Roman', Times, serif; animation: glowZoom 3s infinite;">Our
+                Services</h1>
+        </b>
+
+        <style>
+            @keyframes glowZoom {
+                0% {
+                    color: rgb(8, 153, 220);
+                    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8);
+                    transform: scale(1);
+                }
+
+                50% {
+                    color: rgb(4, 107, 101);
+                    /* Change to your preferred glow color */
+                    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.8);
+                    transform: scale(1.1);
+                }
+
+                100% {
+                    color: rgb(100, 3, 78);
+                    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8);
+                    transform: scale(1);
+                }
+            }
+        </style>
+
+        <div class="container0">
+
+            <div class="card0">
+                <div class="icon">
+                    <img src="/static/images/predictive-chart.png" alt="Predict">
+                </div>
+                <div class="content0">
+                    <h2>Predict</h2>
+                    <p style="font-size: 15px;">Time series forecasting is exactly what it sounds like; predicting
+                        unknown values. Time series forecasting involves the collection of historical data.</p>
+                </div>
+            </div>
+            <div class="card0">
+                <div class="icon">
+                    <img src="/static/images/predictive-analysis.png" alt="Analyse">
+                </div>
+                <div class="content0">
+                    <h2>Analyse</h2>
+                    <p style="font-size: 15px;">Analyzing a sequence of data points collected over an interval of
+                        time.Here,analysts record data points at consistent intervals over a set period of time. </p>
+                </div>
+            </div>
+            <div class="card0">
+                <div class="icon">
+                    <img src="/static/images/visua.png" alt="Visualize">
+                </div>
+                <div class="content0">
+                    <h2>Visualize</h2>
+                    <p style="font-size: 15px;">Time series data visualization with Python is an essential aspect of
+                        data analysis that involves representing data points collected over time .</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact"
+        style="padding: 50px; background-image: url('https://t4.ftcdn.net/jpg/03/89/59/43/360_F_389594317_YlRehGCDqjfYT0Zdst06TZGaa9c9jNZ8.jpg'); background-size: cover; mix-blend-mode: lighten; text-align: center;">
+        <h2
+            style="margin-bottom: 20px; font-size: 40px; font-family: 'Times New Roman', Times, serif;color:maroon;font-weight: bold;">
+            Contact Details</h2>
+
+        <div style="display: flex; justify-content: space-around; align-items: center;">
+            <div>
+                <a href="https://www.google.com/maps/search/ruby+kolkata/@22.480574,88.3415919,13z/data=!3m1!4b1?entry=ttu"
+                    target="_blank">
+                    <img style="width: 90px; height: 90px;"
+                        src="https://media.tenor.com/9zntDQEnmEkAAAAi/point-of-interest-map.gif" alt="Address Icon">
+                </a><br />
+                <br>
+                <p style="font-size: 16px;font-family: 'Times New Roman', Times, serif;font-weight: bold">Ruby, Kolkata
+                    - 700107 <br><br>Click the map icon <br>to find directions on Google Maps.</p>
+            </div>
+            <div>
+                <a href="tel:+917855973986">
+                    <img style="width: 90px; height: 90px;"
+                        src="https://highbuy.in/wp-content/uploads/2022/03/Call-gif.gif" alt="Phone Icon">
+                </a><br />
+                <br>
+                <p style="font-size: 16px;font-family: 'Times New Roman', Times, serif;font-weight: bold">Call us at +91
+                    7855973986. <br><br>Tap the phone icon to give us a ring</p>
+            </div>
+            <div>
+                <a href="mailto:sohojtsf@gmail.com">
+                    <img style="width: 90px; height: 90px;"
+                        src="https://images.squarespace-cdn.com/content/v1/56012adce4b0cf12162d2a86/1472569189356-KGD5TAI2VUG58XPLP4TH/ke17ZwdGBToddI8pDm48kJQJVsEtCLppChK_Q1hK7HxZw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVH_MrANN8KR8T9Qur-Sqz4nJ4Djo7RP9NLGu1GdMqYHR2bSd6kfRtgWHgNMDgGnmDY/image-asset.gif"
+                        alt="Email Icon">
+                </a><br />
+                <br>
+                <p style="font-size: 16px;font-family: 'Times New Roman', Times, serif;font-weight: bold;">Drop us an
+                    email at<br> sohojtsf@gmail.com <br><br>Click the email icon<br> to compose your message.
+                </p>
+            </div>
+        </div>
+        <br>
+        <p style="margin-top: 20px; font-size: 23px; font-weight: bold; font-family: 'Times New Roman', Times, serif;">
+            Have a question or just want to chat ? We're all ears ! Click here</a> to drop us a message.
+        </p>
+        <br>
+        <button onclick="location.href='/contact'"
+            style="background: linear-gradient(45deg,#00ccff,#0e1538,#d400d4); color: white; font-family: 'Times New Roman', Times, serif;font-size: larger;"
+            class="btn">Contact Us</button>
+    </section>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <footer>
+        <center>
+            <h1 style="margin-left: 10px; left: 20px; font-family: 'Times New Roman', Times, serif; color: #fff; font-weight: bold;">
+                সহজ-TSF <i class="fa-solid fa-arrow-trend-up fa-fade"></i> 
+            </h1>
+            
+        </center>
+        <div class="waves">
+            <div class="wave" id="wave1"></div>
+        </div>
+    
+        <ul class="menu">
+            <li><a href="#" style="font-family: 'Times New Roman', Times, serif;">Home</a></li>
+            <li><a href="#culate" style="font-family: 'Times New Roman', Times, serif;">Forecasting Insights</a></li>
+            <li><a href='/contact' style="font-family: 'Times New Roman', Times, serif;">Contact</a></li>
+            <li><a href="#service" style="font-family: 'Times New Roman', Times, serif;">Service</a></li>
+        </ul>
+        <b>
+            <p style="font-family: 'Times New Roman', Times, serif;color: #021946;">©সহজ-TSF Team| All rights
+                reserved
+            </p>
+        </b>
+    </footer>
+        <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+    <!-- JavaScript for Popup -->
+    <script>
+        function togglePopup(popupId) {
+            var popup = document.getElementById(popupId);
+            popup.classList.toggle("active");
+        }
+    </script>
+
+    <!-- Popup HTML -->
+    <div class="popup" id="popup1">
+        <div class="popup-content">
+            <h2 style="font-family: 'Times New Roman', Times, serif;">Instructions</h2>
+            <p style="font-family: 'Times New Roman', Times, serif;">Follow these steps:</p><br>
+            <ol>
+                <li style="font-family: 'Times New Roman', Times, serif;">Upload your data CSV file.</li>
+                <li style="font-family: 'Times New Roman', Times, serif;">Set training and testing percentages.</li>
+                <li style="font-family: 'Times New Roman', Times, serif;">Click "Calculate".</li>
+                <li style="font-family: 'Times New Roman', Times, serif;">View graphs showing performance of Auto ARIMA,
+                    Auto ETS, SES, DES, TES & Naive models.</li>
+                <li style="font-family: 'Times New Roman', Times, serif;">Check RMSE and MAPE values for each model.
+                </li>
+            </ol>
+            <p style="font-family: 'Times New Roman', Times, serif;">Determine the best model for future predictions.
+            </p><br>
+            <button class="close-btn" onclick="togglePopup('popup1')">Close</button>
+        </div>
+    </div>
+
+    <div class="popup" id="popup2">
+        <div class="popup-content">
+            <h2 style="font-family: 'Times New Roman', Times, serif;">Instructions</h2><br>
+            <p style="font-family: 'Times New Roman', Times, serif;">Here are the instructions for using this tool :-
+            </p><br>
+            <ul style="text-align: justify;">
+                <li style="font-family: 'Times New Roman', Times, serif;">Upload your data file.</li>
+                <li style="font-family: 'Times New Roman', Times, serif;">Enter the forecast horizon and unit
+                    (day/month/year).</li>
+                <li style="font-family: 'Times New Roman', Times, serif;">Select from Auto ARIMA, Auto ETS, SES,
+                    DES, TES,and Naive.</li>
+                <li style="font-family: 'Times New Roman', Times, serif;">Generate the forecast graph.</li>
+                <li style="font-family: 'Times New Roman', Times, serif;">Review historical and forecasted data on one
+                    graph.</li>
+            </ul><br>
+            <p style="font-family: 'Times New Roman', Times, serif;">Enjoy Analyzing Your Data !</p><br>
+            <button class="close-btn" onclick="togglePopup('popup2')">Close</button>
+        </div>
+    </div>
+
+</body>
+
+</html>

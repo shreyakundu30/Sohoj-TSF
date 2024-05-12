@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Display</title>
+    <style>
+        *{
+            background-image: url('https://c4.wallpaperflare.com/wallpaper/22/240/855/texture-gradient-simple-background-blue-wallpaper-preview.jpg');
+            background-size: cover;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 10px;
+        }
+
+        .card {
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 90%; /* Ensure the card takes up 100% width */
+            height: 340px; /* Set a fixed height for the graph containers */
+            margin-left: 40px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%; /* Make the iframe take up 100% height of its parent container */
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card" data-tilt>
+            <iframe src="{{ url_for('static', filename=full_graph) }}"></iframe>
+        </div>
+        <div class="card" data-tilt>
+            <iframe src="{{ url_for('static', filename=training_graph) }}"></iframe>
+        </div>
+        <div class="card testing-graph" data-tilt>
+            <iframe src="{{ url_for('static', filename=testing_graph) }}"></iframe>
+        </div>
+        <div class="card" data-tilt>
+            <iframe src="{{ url_for('static', filename=predicted_graph) }}"></iframe>
+        </div>
+    </div>
+</body>
+
+</html>

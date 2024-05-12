@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forecasting</title>
+    <style>
+      body {
+        font-family: 'Times New Roman', Times, serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        background-image: url('https://png.pngtree.com/background/20220731/original/pngtree-stock-trend-k-line-chart-background-line-chart-picture-image_1908868.jpg');
+        background-size: cover;
+      }
+  
+      .container {
+        max-width: 600px;
+        margin: 150px auto;
+        margin-top: 55px;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Grey with transparency */
+        border-radius: 50px 5px;
+        backdrop-filter: blur(50px);
+        position: relative;
+        box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+  
+        &::before {
+          content: "";
+          position: absolute;
+          border-radius: 50px 5px;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border: 5px solid turquoise;
+          transition: all .5s;
+          animation: clippath 3s infinite linear;
+        }
+      }
+  
+      @keyframes clippath {
+  
+        0%,
+        100% {
+          clip-path: inset(0 0 95% 0);
+        }
+  
+        25% {
+          clip-path: inset(0 95% 0 0);
+        }
+  
+        50% {
+          clip-path: inset(95% 0 0 0);
+        }
+  
+        75% {
+          clip-path: inset(0 0 0 95%);
+        }
+      }
+  
+  
+      h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-family: "Book Antique";
+        text-align: center;
+        font-size: 40px;
+        color: transparent;
+        background-image: url('https://cdn.dribbble.com/users/390128/screenshots/1862177/sgd.gif');
+        background-position: center;
+        -webkit-background-clip: text;
+      }
+  
+      form {
+        display: flex;
+        flex-direction: column;
+        color: #f0f0f0;
+      }
+  
+      label {
+        margin-bottom: 10px;
+      }
+  
+      input[type="file"],
+      input[type="number"],
+      button {
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-family: "Book Antique", Arial, sans-serif;
+      }
+  
+      .button-86 {
+        all: unset;
+        width: 100px;
+        height: 30px;
+        font-size: 16px;
+        background: transparent;
+        border: none;
+        position: relative;
+        color: #f0f0f0;
+        cursor: pointer;
+        z-index: 1;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+      }
+  
+      .button-86::after,
+      .button-86::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: -99999;
+        transition: all .4s;
+      }
+  
+      .button-86::before {
+        transform: translate(0%, 0%);
+        width: 100%;
+        height: 100%;
+        background: #28282d;
+        border-radius: 10px;
+      }
+  
+      .button-86::after {
+        transform: translate(10px, 10px);
+        width: 35px;
+        height: 35px;
+        background: #ffffff15;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border-radius: 50px;
+      }
+  
+      .button-86:hover::before {
+        transform: translate(5%, 20%);
+        width: 110%;
+        height: 110%;
+      }
+  
+      .button-86:hover::after {
+        border-radius: 10px;
+        transform: translate(0, 0);
+        width: 100%;
+        height: 100%;
+      }
+  
+      .button-86:active::after {
+        transition: 0s;
+        transform: translate(0, 5%);
+      }
+  
+      .error-message {
+        color: red;
+        margin-top: 18px;
+        display: none;
+      }
+  
+      .btn2 {
+        position: relative;
+        display: inline-block;
+        padding: 15px 30px;
+        border: 2px solid #fefefe;
+        text-transform: uppercase;
+        color: #fefefe;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        transition: 0.3s;
+        font-family: 'Times New Roman', Times, serif;
+      }
+  
+      .btn2::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        width: calc(100% + 4px);
+        height: calc(100% - -2px);
+        background-color: black;
+        transition: 0.3s ease-out;
+        transform: scaleY(1);
+      }
+  
+      .btn2::after {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        width: calc(100% + 4px);
+        height: calc(100% - 50px);
+        background-color: transparent;
+        transition: 0.3s ease-out;
+        transform: scaleY(1);
+      }
+  
+      .btn2:hover::before {
+        transform: translateY(-25px);
+        height: 0;
+      }
+  
+      .btn2:hover::after {
+        transform: scaleX(0);
+        transition-delay: 0.15s;
+      }
+  
+      .btn2:hover {
+        border: 2px solid #fefefe;
+      }
+  
+      .btn2 span {
+        position: relative;
+        z-index: 3;
+      }
+  
+      button {
+        text-decoration: none;
+        border: none;
+        background-color: transparent;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <header style="display: flex; justify-content: flex-end; padding: 5px;">
+      <button>
+        <a href="/" class="btn2"><span class="spn2">Back to Home</span></a>
+      </button>
+      <button>
+        <a href="/csv" class="btn2"><span class="spn2">Predict as per Choosen Model</span></a>
+      </button>
+    </header>
+    <UploadHeader>
+      <p
+        style="color: white; text-align: center; padding-top: -40px; font-size: 20px; font-family:'Times New Roman', Times, serif;">
+        Easily
+        find the best prediction model for your data ! <br><br>Upload your CSV, set training and testing percentages, and
+        watch our tool create informative graphs with different time series models.</p>
+    </UploadHeader>
+
+  <div class="container">
+      <h1>Upload CSV File</h1>
+    <form action="/plot" method="POST" enctype="multipart/form-data">
+        <label for="file">Upload CSV file:</label><br>
+        <input type="file" id="file" name="file">
+        <label for="train_percent">Train Data Percentage:</label>
+        <input type="number" id="train_percent" name="train_percent" min="1" max="100">
+        <label for="test_percent">Test Data Percentage:</label>
+        <input type="number" id="test_percent" name="test_percent" min="1" max="100">
+        <button class="button-86" role="button" type="submit" id="submitBtn">Calculate</button>
+    </form>
+    </div>
+    {% if results %}
+        {% for method, result in results.items() %}
+            <h2>{{ method }}</h2>
+            <p>Train RMSE: {{ result.train_rmse }}</p>
+            <p>Test RMSE: {{ result.test_rmse }}</p>
+            <p>Train MAPE: {{ result.train_mape }}</p>
+            <p>Test MAPE: {{ result.test_mape }}</p>
+            <img src="{{ result.graph }}" alt="{{ method }} Forecast">
+        {% endfor %}
+    {% endif %}
+  
+</body>
+</html>

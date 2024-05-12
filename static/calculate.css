@@ -1,0 +1,277 @@
+.cal-section {
+    margin: 40px auto;
+    max-width: 1200px; /* Adjust as needed */
+}
+.cal-header {
+    text-align: center;
+    margin-top: 80px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    background-image: url('https://img.freepik.com/free-vector/dark-wavy-shape-with-shinny-light-background_1409-1923.jpg');
+    padding: 30px 0;
+    background-size: cover;
+}
+
+/* Style for the containers */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+.cal-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px;
+    background: url('https://c4.wallpaperflare.com/wallpaper/211/410/402/lines-blue-green-streaks-wallpaper-preview.jpg') no-repeat center center fixed;
+    background-size: cover;
+    backdrop-filter: blur(10px);
+    height: 50vh;
+    margin-top:-40px;
+}
+
+.calleft-container,
+.calright-container {
+    display: flex;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    width: 48%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.calleft-container img,
+.calright-container img {
+    max-width: 50%;
+    height: auto;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.cal-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.cal-content h2 {
+    color: #3498db;
+}
+
+.cal-content p {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+.container0
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px;
+    background-image: url('https://e0.pxfuel.com/wallpapers/128/661/desktop-wallpaper-white-background-white-colour.jpg');
+    background-size: cover;
+    mix-blend-mode: lighten;
+}
+.card0
+{
+    position: relative;
+    width: 250px;
+    height: 380px;
+    margin: 75px;
+    background: #287bff;
+    border-radius: 20px;
+    border-bottom-left-radius: 160px;
+    border-bottom-right-radius: 160px;
+    box-shadow: 0 15px 0 #fff,
+    inset 0 -15px 0 rgba(255,255,255,0.25),
+    0 45px 0 rgba(0,0,0,0.15);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.card0::before
+{
+    content: '';
+    position: absolute;
+    top: -140%;
+    left: -40%;
+    width: 100%;
+    height: 120%;
+    background: linear-gradient(90deg,transparent,rgba(255,255,255,0.2));
+    transform: rotate(35deg);
+    pointer-events: none;
+    filter: blur(5px);
+}
+.card0:nth-child(1)
+{
+    background: linear-gradient(to bottom, #ff2ae0,#645bf6);
+}
+.card0:nth-child(2)
+{
+    background: linear-gradient(to bottom, #ffec61,#f004d0);
+}
+.card0:nth-child(3)
+{
+    background: linear-gradient(to bottom, #24ff72,#9a4eff);
+}
+.icon
+{
+    position:absolute;
+    width: 148px;
+    height: 120px;
+    background: #fff;
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+    box-shadow: 0 10px 0 rgba(0,0,0,0.1),
+    inset 0 -8px 0 #fff;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+}
+.icon::before
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50px;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-top-right-radius: 50px;
+    box-shadow: 15px -15px 0 15px #fff;
+}
+.icon::after
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -50px;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-top-left-radius: 50px;
+    box-shadow: -15px -15px 0 15px #fff;
+}
+.icon img{
+    color: #fff;
+    position:relative;
+    font-size: 6em;
+    z-index: 10000;
+    height: 100px;
+    width: 99px;
+}
+.content0
+{
+    position: absolute;
+    width: 100%;
+    padding: 30px;
+    padding-top: 140px;
+    text-align: center;
+}
+.content0 h2
+{
+    font-size: 1.75em;
+    color: #fff;
+    margin-bottom: 10px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.content0 p
+{
+    color:#fff;
+    line-height: 1.5em;
+    font-size: 10px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+section h1{
+    font-size: 50px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
+}
+
+
+
+.container2{
+    position: relative;
+    width: 110px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    padding-top: 70px;
+}
+.container2 .card2{
+    position:relative;
+    width: 300px;
+    height: 280px;
+    background: #fff;
+    margin: 10px 10px;
+    padding-right: 20px ;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 202px rgba(238, 237, 237, 0.5);
+    transition: 0.3s ease-in-out;
+    cursor:grab;
+            
+}
+.container2 .card2:hover{
+    height: 350px;
+    transform: scale(1.05);
+}
+.container2 .card2 .imgBx{
+    position: relative;
+    width: 270px;
+    height: 260px;
+    top: -50px;
+    left: 20px;
+    z-index: 1;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+.container2 .card2 .imgBx img{
+    width: 255px;
+    border-radius: 4px;
+    height: 260px;
+    top: -40px;
+}
+.container2 .card2 .content2{
+    position: relative;
+    margin-top: -140px;
+    padding: 10px 15px;
+    text-align: center;
+    color: #111;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.1s ease-in-out;
+}
+.container2 .card2:hover .content2{
+    visibility: visible;
+    opacity: 1;
+    margin-top: -40px;
+    transition-delay: 0.2s;
+}
+.content2 h2{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 30px;
+    color: brown;
+}
+
+
+
+
+

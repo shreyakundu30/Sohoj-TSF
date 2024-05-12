@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Series Forecasting Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .popup {
+    background: rgb(238, 174, 202);
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    width: 420px;
+    padding: 30px 40px;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    border-radius: 8px;
+    font-family: 'Times New Roman', Times, serif;
+    display: none;
+    text-align: center;
+    border: 3px solid #923993; /* Border style */
+
+}
+
+
+.popup button {
+    display: block;
+    margin: 0 0 20px auto;
+    background-color: transparent;
+    font-size: 30px;
+    color: #ffffff;
+    background: #923993;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.popup h3 {
+    margin-top: -50px;
+    text-align: justify;
+}
+
+.popup p {
+    font-size: 14px;
+    text-align: justify;
+    margin: 20px 0;
+    line-height: 25px;
+}
+
+.popup a {
+    display: block;
+    width: 150px;
+    position: relative;
+    margin: 10px auto;
+    text-align: center;
+    background-color: #0f72e5;
+    border-radius: 20px;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 0;
+}
+
+        .container {
+            background-image: url('https://png.pngtree.com/background/20210714/original/pngtree-dark-cyan-water-color-background-design-picture-image_1222971.jpg');
+            background-size: cover;
+            margin-top: -30px;
+            padding: 20px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        .graph-container {
+            width: calc(44.44% - 50px); /* Set width for each item (33.33% of container width minus margin) */
+            margin: 20px;
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .metrics {
+            margin-top: 10px;
+            font-size: 14px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+    .btn2 {
+      position: relative;
+      display: inline-block;
+      padding: 15px 30px;
+      border: 2px solid black;
+      text-transform: uppercase;
+      color: black;
+      font-family: 'Times New Roman', Times, serif;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: 0.9s;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    .btn2::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      width: calc(100% + 4px);
+      height: calc(100% - -2px);
+      background-color:white;
+      transition: 0.3s ease-out;
+      transform: scaleY(1);
+      border: black;
+      font-family: 'Times New Roman', Times, serif;
+
+    }
+
+    .btn2::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      width: calc(100% + 4px);
+      height: calc(100% - 50px);
+      background-color: skyblue;
+      transition: 1s ease-out;
+      transform: scaleY(1);
+    }
+
+    .btn2:hover::before {
+      transform: translateY(-25px);
+      height: 0;
+    }
+
+    .btn2:hover::after {
+      transform: scaleX(0);
+      transition-delay: 0.30s;
+    }
+
+    .btn2:hover {
+      border: 2px solid #fefefe;
+    }
+
+    .btn2 span {
+      position: relative;
+      z-index: 3;
+    }
+
+    button {
+      text-decoration: none;
+      border: none;
+      background-color: transparent;
+    }
+    </style>
+</head>
+<body>
+    <header style="display: flex; justify-content: flex-end; padding: 5px;">
+        <button style="margin-right: 15px;"> <!-- Added margin-right for the gap -->
+          <a href="/" class="btn2"><span class="spn2">Back to Home</span></a>
+        </button>
+        <button>
+          <a href="/csv" class="btn2"><span class="spn2">Predict as per Choosen Model</span></a>
+        </button>
+    </header>
+    
+    <br>
+    <div class="container">
+        <h1 style="font-family: lucida calligraphy; font-size: 32px;text-align: center;">Choose your Best Model from Below </h1>
+        
+        <div class="row">
+            <!-- Add image tags for each generated graph -->
+            {% for model, metrics in results.items() %}
+            <div class="graph-container">
+                <img src="{{ metrics['graph'] }}" alt="{{ model }} Forecast">
+                <div class="metrics" >
+                    <p style="font-family: 'Times New Roman', Times, serif;font-weight: bold;">Training MAPE={{ metrics['train_mape'] }}, Testing MAPE={{ metrics['test_mape'] }}</p>
+                    <p style="font-family: 'Times New Roman', Times, serif; font-weight: bold;">Training RMSE={{ metrics['train_rmse'] }}, Testing RMSE={{ metrics['test_rmse'] }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+    </div>
+    <div class="popup">
+        <button id="close">&times;</button>
+        <h3 style="font-family:'Times New Roman', Times, serif;">Read Before You Proceed..</h3>
+        <p>
+            <ul style="font-family: 'Times New Roman', Times, serif; text-align: justify;"><u><b>MAPE (Mean Absolute Percentage Error)</b></u> is a measure of the accuracy of a forecasting method in predicting values on a time series.</ul><br>
+            <ul style="font-family: 'Times New Roman', Times, serif; text-align: justify;"><b>MAPE = (1/n) * Σ ( |Actual - Forecast| / |Actual| ) * 100</b></ul><br>
+            <ul style="font-family: 'Times New Roman', Times, serif; text-align: justify;">Where,
+                <li style="font-family:'Times New Roman', Times, serif;">&lt; 10 : Highly Accurate Forecasting</li>
+                <li style="font-family:'Times New Roman', Times, serif;">10-20 : Good Forecasting</li>
+                <li style="font-family:'Times New Roman', Times, serif;">20-50 : Reasonable Forecasting</li>
+                <li style="font-family:'Times New Roman', Times, serif;">&gt; 50 : Less Accurate (Refer to other models)</li>
+            </ul><br>
+            <ul style="font-family: 'Times New Roman', Times, serif; text-align: justify;"><u><b>RMSE (Root Mean Square Error)</b></u> measures the square root of the average of the squared differences between predicted values and observed values.</ul><br>
+            <ul style="font-family: 'Times New Roman', Times, serif; text-align: justify;"><b>RMSE = sqrt( Σ (Actual - Forecast)^2 / n)</b></ul><br>
+            <ul style="font-family: 'Times New Roman', Times, serif; text-align: justify;">Where,
+                <li style="font-family:'Times New Roman', Times, serif;">&lt; 10 : Accurate Forecasting</li>
+            </ul>
+        </p>
+    </div>
+    <!--Script-->
+    <script type="text/javascript">
+        window.addEventListener("load", function () {
+            setTimeout(
+                function open(event) {
+                    document.querySelector(".popup").style.display = "block";
+                },
+                2000
+            )
+        });
+
+
+        document.querySelector("#close").addEventListener("click", function () {
+            document.querySelector(".popup").style.display = "none";
+        });
+    </script>
+</body>
+</html>
